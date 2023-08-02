@@ -10,7 +10,7 @@ public class Parameters {
     private static final String gw2EIExe = "GuildWars2EliteInsights.exe";
     private static Parameters instance = null;
     public String repoUrl = "https://api.github.com/repos/Swedemon/MzFightReporter/releases/latest";
-    public String homeDir = "";
+    public String homeDir = ".";
     public String gw2EISettingsDirectory = "Settings\\";
     public String defaultLogFolder =
       System.getenv("USERPROFILE") + "\\Documents\\Guild Wars 2\\addons\\arcdps\\arcdps.cbtlogs\\";
