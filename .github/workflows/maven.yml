@@ -53,7 +53,7 @@ jobs:
         asset_name: MzApp-Latest.jar
         asset_content_type: application/java-archive
     - name: Upload Full
-      id: upload-release-asset
+      id: upload-release-asset-2
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
