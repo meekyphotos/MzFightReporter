@@ -111,9 +111,8 @@ public class FileWatcher {
                         System.out.println("File was removed.");
                         break; //exit loop
                     } else if (lastModified == f.lastModified()) {
-                        System.out.println("Invoking GW2EI...");
-                        final String confFolder = p.eliteInsightSettings().getAbsolutePath();
-                        final String parseConfig = confFolder + "wvwupload.conf";
+                        final String parseConfig = new File(p.eliteInsightSettings(), "wvwupload.conf").getAbsolutePath();
+                        System.out.println("Invoking GW2EI... '" + p.eliteInsightFile().getAbsolutePath() + "' using '" + parseConfig + "'");
                         //parse json
                         final ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "start", "/b", "/belownormal",
                                                                      "/wait", p.eliteInsightFile().getAbsolutePath(), "-c", parseConfig, fullFilePath
