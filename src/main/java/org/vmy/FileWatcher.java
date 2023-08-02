@@ -59,10 +59,10 @@ public class FileWatcher {
     public void run() throws Exception {
         final Parameters p = Parameters.getInstance();
 
-        if (new File(p.homeDir + File.separator + p.gw2EIExe_New).exists()) {
+        if (p.eliteInsightFile().exists()) {
             System.out.println("Detected GuildWars2EliteInsights Application.");
         } else {
-            System.out.println("Failure to detect GuildWars2EliteInsights application at: " + p.homeDir + File.separator + p.gw2EIExe_New);
+            System.out.println("Failure to detect GuildWars2EliteInsights application at: " + p.eliteInsightFile().getAbsolutePath());
         }
 
         final File folder = new File(p.customLogFolder);
@@ -112,11 +112,11 @@ public class FileWatcher {
                         break; //exit loop
                     } else if (lastModified == f.lastModified()) {
                         System.out.println("Invoking GW2EI...");
-                        final String confFolder = p.homeDir + p.gw2EISettings;
-                        String parseConfig = confFolder + "wvwupload.conf";
+                        final String confFolder = p.eliteInsightSettings().getAbsolutePath();
+                        final String parseConfig = confFolder + "wvwupload.conf";
                         //parse json
                         final ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "start", "/b", "/belownormal",
-                                                                     "/wait", "." + p.gw2EIExe_New, "-c", parseConfig, fullFilePath
+                                                                     "/wait", p.eliteInsightFile().getAbsolutePath(), "-c", parseConfig, fullFilePath
                         );
                         pb.directory(new File(p.homeDir));
                         pb.inheritIO();

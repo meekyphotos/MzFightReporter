@@ -1,17 +1,17 @@
 package org.vmy;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class Parameters {
 
+    private static final String gw2EIExe = "GuildWars2EliteInsights.exe";
     private static Parameters instance = null;
     public String repoUrl = "https://api.github.com/repos/Swedemon/MzFightReporter/releases/latest";
     public String homeDir = "";
-    public String gw2EIExe_Old = "\\GW2EI-4-4-21\\GuildWars2EliteInsights.exe";
-    public String gw2EIExe_New = "\\GW2EI-7-7-22\\GuildWars2EliteInsights.exe";
-    public String gw2EISettings = "\\GW2EI-7-7-22\\Settings\\";
+    public String gw2EISettingsDirectory = "Settings\\";
     public String defaultLogFolder =
       System.getenv("USERPROFILE") + "\\Documents\\Guild Wars 2\\addons\\arcdps\\arcdps.cbtlogs\\";
     public String customLogFolder = "";
@@ -32,6 +32,7 @@ public class Parameters {
     public boolean showQuickReport = true;
     public boolean showHeals = true;
     public String parseBotParameters = "-Xmx1024M";
+    public String baseDirectoryGW2EI = "GW2EI-7-7-22";
 
     private Parameters() {
         loadResources();
@@ -44,6 +45,14 @@ public class Parameters {
         return instance;
     }
 
+    public File eliteInsightFile() {
+        return new File (new File(homeDir, baseDirectoryGW2EI), gw2EIExe);
+    }
+
+    public File eliteInsightSettings() {
+        return new File (new File(homeDir, baseDirectoryGW2EI), gw2EISettingsDirectory);
+    }
+
     private void loadResources() {
         FileInputStream file = null;
         try {
@@ -53,9 +62,6 @@ public class Parameters {
             prop.load(file);
 
             //set properties
-            gw2EIExe_New = homeDir + "\\GW2EI-7-7-22\\GuildWars2EliteInsights.exe";
-            gw2EIExe_Old = homeDir + "\\GW2EI-4-4-21\\GuildWars2EliteInsights.exe";
-            final String lg = prop.getProperty("customLogFolder");
             customLogFolder = prop.getProperty("customLogFolder");
             discordThumbnail = prop.getProperty("discordThumbnail", discordThumbnail);
             discordWebhook = prop.getProperty("discordWebhook", discordWebhook);
@@ -63,6 +69,7 @@ public class Parameters {
             twitchBotToken = prop.getProperty("twitchBotToken", twitchBotToken);
             jarName = prop.getProperty("jarName", jarName);
             parseBotParameters = prop.getProperty("parseBotParameters", "-Xmx1024M");
+            baseDirectoryGW2EI = prop.getProperty("baseDirectoryGW2EI", baseDirectoryGW2EI);
             maxWvwUpload = Integer.parseInt(prop.getProperty("maxWvwUpload", String.valueOf(maxWvwUpload)));
             graphPlayerLimit = Integer.parseInt(prop.getProperty("graphPlayerLimit", String.valueOf(graphPlayerLimit)));
             showDamageGraph = Boolean.valueOf(prop.getProperty("showDamageGraph", "true"));
