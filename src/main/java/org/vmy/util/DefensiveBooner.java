@@ -1,24 +1,25 @@
 package org.vmy.util;
 
 public class DefensiveBooner {
+
     private String name;
     private String profession;
     private String group;
-    private int stability=0;
-    private int aegis=0;
-    private int protection=0;
-    private int resistance=0;
-    private int resolution=0;
-    private int alacrity=0;
-    private int defensiveRating=0;
+    private int stability = 0;
+    private int aegis = 0;
+    private int protection = 0;
+    private int resistance = 0;
+    private int resolution = 0;
+    private int alacrity = 0;
+    private int defensiveRating = 0;
 
-    public DefensiveBooner(String name, String profession, String group) {
+    public DefensiveBooner(final String name, final String profession, final String group) {
         this.name = name;
         this.profession = profession;
         this.group = group;
     }
 
-    public DefensiveBooner(String name, String profession, String group, int stability, int aegis, int protection, int resistance, int resolution, int alacrity) {
+    public DefensiveBooner(final String name, final String profession, final String group, final int stability, final int aegis, final int protection, final int resistance, final int resolution, final int alacrity) {
         this.name = name;
         this.profession = profession;
         this.group = group;
@@ -32,30 +33,33 @@ public class DefensiveBooner {
     }
 
     public void computeRating() {
-        defensiveRating = 3*stability + 2*aegis + protection + (int)(0.5*resistance) + resolution + (int)(0.5*alacrity);
+        defensiveRating = 3 * stability + 2 * aegis + protection + (int) (0.5 * resistance) + resolution + (int) (0.5 * alacrity);
     }
 
-    public int compareTo(DefensiveBooner d) {
-        if (defensiveRating==d.defensiveRating)
+    public int compareTo(final DefensiveBooner d) {
+        if (defensiveRating == d.defensiveRating) {
             return 0;
-        else if (defensiveRating>d.defensiveRating)
+        } else if (defensiveRating > d.defensiveRating) {
             return -1;
-        else
+        } else {
             return 1;
+        }
     }
 
     public String toString() {
-        return String.format("%-25s",
-                String.format("%.18s", name).trim() + " (" + profession.substring(0,4) + ")")
-                + String.format("%7s",defensiveRating);
-                //+ " =>" + 3*stability + "+" +2*aegis + "+" +protection + "+" +(int)(0.5*resistance) + "+" +resolution + "+" +(int)(0.5*alacrity);
+        return String.format(
+          "%-25s",
+          String.format("%.18s", name).trim() + " (" + profession.substring(0, 4) + ")"
+        )
+               + String.format("%7s", defensiveRating);
+        //+ " =>" + 3*stability + "+" +2*aegis + "+" +protection + "+" +(int)(0.5*resistance) + "+" +resolution + "+" +(int)(0.5*alacrity);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -63,7 +67,7 @@ public class DefensiveBooner {
         return profession;
     }
 
-    public void setProfession(String profession) {
+    public void setProfession(final String profession) {
         this.profession = profession;
     }
 
@@ -71,7 +75,7 @@ public class DefensiveBooner {
         return stability;
     }
 
-    public void setStability(int stability) {
+    public void setStability(final int stability) {
         this.stability = stability;
     }
 
@@ -79,7 +83,7 @@ public class DefensiveBooner {
         return aegis;
     }
 
-    public void setAegis(int aegis) {
+    public void setAegis(final int aegis) {
         this.aegis = aegis;
     }
 
@@ -87,7 +91,7 @@ public class DefensiveBooner {
         return protection;
     }
 
-    public void setProtection(int protection) {
+    public void setProtection(final int protection) {
         this.protection = protection;
     }
 
@@ -95,7 +99,7 @@ public class DefensiveBooner {
         return resistance;
     }
 
-    public void setResistance(int resistance) {
+    public void setResistance(final int resistance) {
         this.resistance = resistance;
     }
 
@@ -103,7 +107,7 @@ public class DefensiveBooner {
         return resolution;
     }
 
-    public void setResolution(int resolution) {
+    public void setResolution(final int resolution) {
         this.resolution = resolution;
     }
 
@@ -111,7 +115,7 @@ public class DefensiveBooner {
         return defensiveRating;
     }
 
-    public void setDefensiveRating(int defensiveRating) {
+    public void setDefensiveRating(final int defensiveRating) {
         this.defensiveRating = defensiveRating;
     }
 
@@ -119,7 +123,7 @@ public class DefensiveBooner {
         return alacrity;
     }
 
-    public void setAlacrity(int alacrity) {
+    public void setAlacrity(final int alacrity) {
         this.alacrity = alacrity;
     }
 
@@ -127,7 +131,7 @@ public class DefensiveBooner {
         return group;
     }
 
-    public void setGroup(String group) {
+    public void setGroup(final String group) {
         this.group = group;
     }
 

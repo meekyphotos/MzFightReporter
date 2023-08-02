@@ -3,65 +3,69 @@ package org.vmy.util;
 import java.math.BigDecimal;
 
 public class Condier {
+
     private String name;
     private String profession;
-    private int stunCount=0;
-    private BigDecimal stunDur=new BigDecimal(0);
-    private int knockdownCount=0;
-    private BigDecimal knockdownDur=new BigDecimal(0);
-    private int pullCount=0;
-    private BigDecimal pullDur=new BigDecimal(0);
-    private int floatCount=0;
-    private BigDecimal floatDur=new BigDecimal(0);
-    private int sinkCount=0;
-    private BigDecimal sinkDur=new BigDecimal(0);
-    private int tauntCount=0;
-    private BigDecimal tauntDur=new BigDecimal(0);
-    private int chilledCount=0;
-    private BigDecimal chilledDur=new BigDecimal(0);
-    private int crippledCount=0;
-    private BigDecimal crippledDur=new BigDecimal(0);
-    private int immobCount=0;
-    private BigDecimal immobDur=new BigDecimal(0);
-    private int slowCount=0;
-    private BigDecimal slowDur=new BigDecimal(0);
-    private int totalCount=0;
-    private BigDecimal totalDur=new BigDecimal(0);
+    private int stunCount = 0;
+    private BigDecimal stunDur = new BigDecimal(0);
+    private int knockdownCount = 0;
+    private final BigDecimal knockdownDur = new BigDecimal(0);
+    private int pullCount = 0;
+    private BigDecimal pullDur = new BigDecimal(0);
+    private int floatCount = 0;
+    private BigDecimal floatDur = new BigDecimal(0);
+    private int sinkCount = 0;
+    private BigDecimal sinkDur = new BigDecimal(0);
+    private int tauntCount = 0;
+    private BigDecimal tauntDur = new BigDecimal(0);
+    private int chilledCount = 0;
+    private BigDecimal chilledDur = new BigDecimal(0);
+    private int crippledCount = 0;
+    private BigDecimal crippledDur = new BigDecimal(0);
+    private int immobCount = 0;
+    private BigDecimal immobDur = new BigDecimal(0);
+    private int slowCount = 0;
+    private BigDecimal slowDur = new BigDecimal(0);
+    private int totalCount = 0;
+    private BigDecimal totalDur = new BigDecimal(0);
 
-    public Condier(String name, String profession) {
+    public Condier(final String name, final String profession) {
         this.name = name;
         this.profession = profession;
     }
 
     public void computeTotals() {
-        totalCount = stunCount+knockdownCount+pullCount+floatCount+sinkCount+tauntCount+chilledCount+crippledCount+immobCount+slowCount;
+        totalCount = stunCount + knockdownCount + pullCount + floatCount + sinkCount + tauntCount + chilledCount + crippledCount + immobCount + slowCount;
         totalDur = stunDur.add(knockdownDur).add(pullDur).add(floatDur).add(sinkDur).add(tauntDur).add(chilledDur).add(crippledDur).add(immobDur).add(slowDur);
     }
 
-    public int compareTo(Condier c) {
+    public int compareTo(final Condier c) {
 
-        if (stunCount+immobCount+.1*(chilledCount+crippledCount) == c.stunCount+c.immobCount+.1*(c.chilledCount+c.crippledCount))
+        if (stunCount + immobCount + 0.1 * (chilledCount + crippledCount) == c.stunCount + c.immobCount + 0.1 * (c.chilledCount + c.crippledCount)) {
             return 0;
-        else if (stunCount+immobCount+.1*(chilledCount+crippledCount) > c.stunCount+c.immobCount+.1*(c.chilledCount+c.crippledCount))
+        } else if (stunCount + immobCount + 0.1 * (chilledCount + crippledCount) > c.stunCount + c.immobCount + 0.1 * (c.chilledCount + c.crippledCount)) {
             return -1;
-        else
+        } else {
             return 1;
+        }
     }
 
     public String toString() {
-        return String.format("%-25s",
-                String.format("%.18s", name).trim() + " (" + profession.substring(0,4) + ")")
-                + String.format("%3s",stunCount) + " "
-                + String.format("%3s",immobCount) + " "
-                + String.format("%3s",chilledCount) + " "
-                + String.format("%3s",crippledCount);
+        return String.format(
+          "%-25s",
+          String.format("%.18s", name).trim() + " (" + profession.substring(0, 4) + ")"
+        )
+               + String.format("%3s", stunCount) + " "
+               + String.format("%3s", immobCount) + " "
+               + String.format("%3s", chilledCount) + " "
+               + String.format("%3s", crippledCount);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -69,7 +73,7 @@ public class Condier {
         return profession;
     }
 
-    public void setProfession(String profession) {
+    public void setProfession(final String profession) {
         this.profession = profession;
     }
 
@@ -77,7 +81,7 @@ public class Condier {
         return stunCount;
     }
 
-    public void setStunCount(int stunCount) {
+    public void setStunCount(final int stunCount) {
         this.stunCount = stunCount;
     }
 
@@ -85,7 +89,7 @@ public class Condier {
         return stunDur;
     }
 
-    public void setStunDur(BigDecimal stunDur) {
+    public void setStunDur(final BigDecimal stunDur) {
         this.stunDur = stunDur;
     }
 
@@ -93,7 +97,7 @@ public class Condier {
         return knockdownCount;
     }
 
-    public void setKnockdownCount(int knockdownCount) {
+    public void setKnockdownCount(final int knockdownCount) {
         this.knockdownCount = knockdownCount;
     }
 
@@ -101,7 +105,7 @@ public class Condier {
         return pullCount;
     }
 
-    public void setPullCount(int pullCount) {
+    public void setPullCount(final int pullCount) {
         this.pullCount = pullCount;
     }
 
@@ -109,7 +113,7 @@ public class Condier {
         return pullDur;
     }
 
-    public void setPullDur(BigDecimal pullDur) {
+    public void setPullDur(final BigDecimal pullDur) {
         this.pullDur = pullDur;
     }
 
@@ -117,7 +121,7 @@ public class Condier {
         return floatCount;
     }
 
-    public void setFloatCount(int floatCount) {
+    public void setFloatCount(final int floatCount) {
         this.floatCount = floatCount;
     }
 
@@ -125,7 +129,7 @@ public class Condier {
         return floatDur;
     }
 
-    public void setFloatDur(BigDecimal floatDur) {
+    public void setFloatDur(final BigDecimal floatDur) {
         this.floatDur = floatDur;
     }
 
@@ -133,7 +137,7 @@ public class Condier {
         return sinkCount;
     }
 
-    public void setSinkCount(int sinkCount) {
+    public void setSinkCount(final int sinkCount) {
         this.sinkCount = sinkCount;
     }
 
@@ -141,7 +145,7 @@ public class Condier {
         return sinkDur;
     }
 
-    public void setSinkDur(BigDecimal sinkDur) {
+    public void setSinkDur(final BigDecimal sinkDur) {
         this.sinkDur = sinkDur;
     }
 
@@ -149,7 +153,7 @@ public class Condier {
         return tauntCount;
     }
 
-    public void setTauntCount(int tauntCount) {
+    public void setTauntCount(final int tauntCount) {
         this.tauntCount = tauntCount;
     }
 
@@ -157,7 +161,7 @@ public class Condier {
         return tauntDur;
     }
 
-    public void setTauntDur(BigDecimal tauntDur) {
+    public void setTauntDur(final BigDecimal tauntDur) {
         this.tauntDur = tauntDur;
     }
 
@@ -165,7 +169,7 @@ public class Condier {
         return chilledCount;
     }
 
-    public void setChilledCount(int chilledCount) {
+    public void setChilledCount(final int chilledCount) {
         this.chilledCount = chilledCount;
     }
 
@@ -173,7 +177,7 @@ public class Condier {
         return chilledDur;
     }
 
-    public void setChilledDur(BigDecimal chilledDur) {
+    public void setChilledDur(final BigDecimal chilledDur) {
         this.chilledDur = chilledDur;
     }
 
@@ -181,7 +185,7 @@ public class Condier {
         return crippledCount;
     }
 
-    public void setCrippledCount(int crippledCount) {
+    public void setCrippledCount(final int crippledCount) {
         this.crippledCount = crippledCount;
     }
 
@@ -189,7 +193,7 @@ public class Condier {
         return crippledDur;
     }
 
-    public void setCrippledDur(BigDecimal crippledDur) {
+    public void setCrippledDur(final BigDecimal crippledDur) {
         this.crippledDur = crippledDur;
     }
 
@@ -197,7 +201,7 @@ public class Condier {
         return slowCount;
     }
 
-    public void setSlowCount(int slowCount) {
+    public void setSlowCount(final int slowCount) {
         this.slowCount = slowCount;
     }
 
@@ -205,7 +209,7 @@ public class Condier {
         return slowDur;
     }
 
-    public void setSlowDur(BigDecimal slowDur) {
+    public void setSlowDur(final BigDecimal slowDur) {
         this.slowDur = slowDur;
     }
 
@@ -213,7 +217,7 @@ public class Condier {
         return immobCount;
     }
 
-    public void setImmobCount(int immobCount) {
+    public void setImmobCount(final int immobCount) {
         this.immobCount = immobCount;
     }
 
@@ -221,7 +225,7 @@ public class Condier {
         return immobDur;
     }
 
-    public void setImmobDur(BigDecimal immobDur) {
+    public void setImmobDur(final BigDecimal immobDur) {
         this.immobDur = immobDur;
     }
 

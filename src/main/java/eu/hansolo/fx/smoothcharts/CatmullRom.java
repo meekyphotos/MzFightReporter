@@ -25,8 +25,9 @@ import javafx.geometry.Point2D;
  * Time: 04:47
  */
 public class CatmullRom {
-    private CatmullRomSpline splineXValues;
-    private CatmullRomSpline splineYValues;
+
+    private final CatmullRomSpline splineXValues;
+    private final CatmullRomSpline splineYValues;
 
 
     // ******************** Constructors **************************************
@@ -42,15 +43,18 @@ public class CatmullRom {
 
 
     // ******************** Methods *******************************************
-    public Point2D q(final double T) { return new Point2D(splineXValues.q(T), splineYValues.q(T)); }
+    public Point2D q(final double T) {
+        return new Point2D(splineXValues.q(T), splineYValues.q(T));
+    }
 
 
     // ******************** Inner Classes *************************************
     class CatmullRomSpline {
-        private double p0;
-        private double p1;
-        private double p2;
-        private double p3;
+
+        private final double p0;
+        private final double p1;
+        private final double p2;
+        private final double p3;
 
 
         // ******************** Constructors **************************************

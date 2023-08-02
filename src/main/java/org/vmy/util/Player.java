@@ -1,38 +1,42 @@
 package org.vmy.util;
 
 public class Player implements Comparable<Player> {
+
     private String name;
     private String group;
     private String profession;
-    private int kills=0;
-    private int deaths=0;
+    private int kills = 0;
+    private int deaths = 0;
 
-    public Player(String name, String profession, String group) {
+    public Player(final String name, final String profession, final String group) {
         this.name = name;
         this.profession = profession;
         this.group = group;
     }
 
-    public int compareTo(Player c) {
-        if (kills/(deaths==0?1:deaths) == c.kills/(c.deaths==0?1:c.deaths))
+    public int compareTo(final Player c) {
+        if (kills / (deaths == 0 ? 1 : deaths) == c.kills / (c.deaths == 0 ? 1 : c.deaths)) {
             return 0;
-        else if (kills/(deaths==0?1:deaths) > c.kills/(c.deaths==0?1:c.deaths))
+        } else if (kills / (deaths == 0 ? 1 : deaths) > c.kills / (c.deaths == 0 ? 1 : c.deaths)) {
             return -1;
-        else
+        } else {
             return 1;
+        }
     }
 
     public String toString() {
-        return String.format("%-25s",
-                String.format("%.18s", name).trim() + " (" + profession.substring(0,4) + ")")
-                + String.format("%,3d",kills) + String.format("%,3d",deaths);
+        return String.format(
+          "%-25s",
+          String.format("%.18s", name).trim() + " (" + profession.substring(0, 4) + ")"
+        )
+               + String.format("%,3d", kills) + String.format("%,3d", deaths);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -40,7 +44,7 @@ public class Player implements Comparable<Player> {
         return group;
     }
 
-    public void setGroup(String group) {
+    public void setGroup(final String group) {
         this.group = group;
     }
 
@@ -48,7 +52,7 @@ public class Player implements Comparable<Player> {
         return profession;
     }
 
-    public void setProfession(String profession) {
+    public void setProfession(final String profession) {
         this.profession = profession;
     }
 
@@ -56,7 +60,7 @@ public class Player implements Comparable<Player> {
         return kills;
     }
 
-    public void setKills(int kills) {
+    public void setKills(final int kills) {
         this.kills = kills;
     }
 
@@ -64,7 +68,7 @@ public class Player implements Comparable<Player> {
         return deaths;
     }
 
-    public void setDeaths(int deaths) {
+    public void setDeaths(final int deaths) {
         this.deaths = deaths;
     }
 

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FightReport implements Serializable {
+
     private String zone;
     private String duration;
     private String commander;
@@ -27,10 +28,11 @@ public class FightReport implements Serializable {
 
     public static FightReport readReportFile() throws Exception {
         FightReport myReport = null;
-        File reportFile = new File(org.vmy.Parameters.getInstance().homeDir + File.separator + "fightreport.bin");
+        final File reportFile = new File(org.vmy.Parameters.getInstance().homeDir + File.separator + "fightreport.bin");
 
-        if (!reportFile.exists())
+        if (!reportFile.exists()) {
             throw new Exception("Fight Report object file not found: " + reportFile.getAbsolutePath());
+        }
 
         FileInputStream frf = null;
         ObjectInputStream o = null;
@@ -40,10 +42,12 @@ public class FightReport implements Serializable {
             // Write objects to file
             myReport = (FightReport) o.readObject();
         } finally {
-            if (o!=null)
+            if (o != null) {
                 o.close();
-            if (frf!=null)
+            }
+            if (frf != null) {
                 frf.close();
+            }
         }
         return myReport;
     }
@@ -52,7 +56,7 @@ public class FightReport implements Serializable {
         return dmgMap;
     }
 
-    public void setDmgMap(HashMap<String, List<Object>> dmgMap) {
+    public void setDmgMap(final HashMap<String, List<Object>> dmgMap) {
         this.dmgMap = dmgMap;
     }
 
@@ -60,7 +64,7 @@ public class FightReport implements Serializable {
         return zone;
     }
 
-    public void setZone(String zone) {
+    public void setZone(final String zone) {
         this.zone = zone;
     }
 
@@ -68,7 +72,7 @@ public class FightReport implements Serializable {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(final String duration) {
         this.duration = duration;
     }
 
@@ -76,7 +80,7 @@ public class FightReport implements Serializable {
         return commander;
     }
 
-    public void setCommander(String commander) {
+    public void setCommander(final String commander) {
         this.commander = commander;
     }
 
@@ -84,7 +88,7 @@ public class FightReport implements Serializable {
         return squadSummary;
     }
 
-    public void setSquadSummary(String squadSummary) {
+    public void setSquadSummary(final String squadSummary) {
         this.squadSummary = squadSummary;
     }
 
@@ -92,7 +96,7 @@ public class FightReport implements Serializable {
         return enemySummary;
     }
 
-    public void setEnemySummary(String enemySummary) {
+    public void setEnemySummary(final String enemySummary) {
         this.enemySummary = enemySummary;
     }
 
@@ -100,7 +104,7 @@ public class FightReport implements Serializable {
         return damage;
     }
 
-    public void setDamage(String damage) {
+    public void setDamage(final String damage) {
         this.damage = damage;
     }
 
@@ -108,7 +112,7 @@ public class FightReport implements Serializable {
         return cleanses;
     }
 
-    public void setCleanses(String cleanses) {
+    public void setCleanses(final String cleanses) {
         this.cleanses = cleanses;
     }
 
@@ -116,17 +120,23 @@ public class FightReport implements Serializable {
         return strips;
     }
 
-    public void setStrips(String strips) { this.strips = strips; }
+    public void setStrips(final String strips) {
+        this.strips = strips;
+    }
 
-    public String getDbooners() { return dbooners; }
+    public String getDbooners() {
+        return dbooners;
+    }
 
-    public void setDbooners(String dbooners) { this.dbooners = dbooners; }
+    public void setDbooners(final String dbooners) {
+        this.dbooners = dbooners;
+    }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(final String url) {
         this.url = url;
     }
 
@@ -134,7 +144,7 @@ public class FightReport implements Serializable {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(final String endTime) {
         this.endTime = endTime;
     }
 
@@ -142,7 +152,7 @@ public class FightReport implements Serializable {
         return ccs;
     }
 
-    public void setCcs(String ccs) {
+    public void setCcs(final String ccs) {
         this.ccs = ccs;
     }
 
@@ -150,7 +160,7 @@ public class FightReport implements Serializable {
         return overview;
     }
 
-    public void setOverview(String overview) {
+    public void setOverview(final String overview) {
         this.overview = overview;
     }
 
@@ -158,7 +168,7 @@ public class FightReport implements Serializable {
         return spikers;
     }
 
-    public void setSpikers(String spikers) {
+    public void setSpikers(final String spikers) {
         this.spikers = spikers;
     }
 
@@ -166,7 +176,7 @@ public class FightReport implements Serializable {
         return healers;
     }
 
-    public void setHealers(String healers) {
+    public void setHealers(final String healers) {
         this.healers = healers;
     }
 }

@@ -16,16 +16,14 @@
 
 package eu.hansolo.fx.smoothcharts;
 
-import eu.hansolo.fx.smoothcharts.SmoothedChart.ChartType;
+import java.util.Random;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.effect.BlurType;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -35,11 +33,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.Stage;
-
-import java.util.Random;
 
 import static eu.hansolo.fx.smoothcharts.SmoothedChart.TRANSPARENT_BACKGROUND;
 
@@ -50,28 +44,33 @@ import static eu.hansolo.fx.smoothcharts.SmoothedChart.TRANSPARENT_BACKGROUND;
  * Time: 04:42
  */
 public class Demo extends Application {
+
     private static final Random RND = new Random();
 
     private XYChart.Series<String, Number> series1;
     private XYChart.Series<String, Number> series2;
     private XYChart.Series<String, Number> series3;
     private XYChart.Series<String, Number> series4;
-    private SmoothedChart<String, Number>  lineChartNotSmoothed;
-    private SmoothedChart<String, Number>  lineChartSmoothed;
-    private SmoothedChart<String, Number>  areaChartNotSmoothed;
-    private SmoothedChart<String, Number>  areaChartSmoothed;
+    private SmoothedChart<String, Number> lineChartNotSmoothed;
+    private SmoothedChart<String, Number> lineChartSmoothed;
+    private SmoothedChart<String, Number> areaChartNotSmoothed;
+    private SmoothedChart<String, Number> areaChartSmoothed;
 
     private XYChart.Series<String, Number> tweakedSeries1;
     private XYChart.Series<String, Number> tweakedSeries2;
     private XYChart.Series<String, Number> tweakedSeries3;
-    private SmoothedChart<String, Number>  tweakedChart;
+    private SmoothedChart<String, Number> tweakedChart;
 
     private XYChart.Series<String, Number> tweaked2Series1;
     private XYChart.Series<String, Number> tweaked2Series2;
-    private SmoothedChart<String, Number>  tweaked2Chart;
+    private SmoothedChart<String, Number> tweaked2Chart;
 
+    public static void main(final String[] args) {
+        launch(args);
+    }
 
-    @Override public void init() {
+    @Override
+    public void init() {
 //        series1 = new XYChart.Series();
 //        series1.setName("Series 1");
 //        series1.getData().add(new XYChart.Data("MO", 24));
@@ -194,7 +193,6 @@ public class Demo extends Application {
 //
 //        lineChartNotSmoothed.addEventHandler(SmoothedChartEvent.DATA_SELECTED, e -> System.out.println("Selected value: " + e.getyValue()));
 
-
         // Tweaked Chart data
         tweakedSeries1 = new XYChart.Series();
         tweakedSeries1.setName("Product 1");
@@ -235,9 +233,10 @@ public class Demo extends Application {
         tweakedChart.setChartType(SmoothedChart.ChartType.LINE);
 
         // Tweak the chart background
-        RadialGradient gradient = new RadialGradient(0, 0, 0.5, 0.25, 0.5, true, CycleMethod.NO_CYCLE,
-                                                     new Stop(0, Color.web("#313A48")),
-                                                     new Stop(1, Color.web("#26262D")));
+        final RadialGradient gradient = new RadialGradient(0, 0, 0.5, 0.25, 0.5, true, CycleMethod.NO_CYCLE,
+                                                           new Stop(0, Color.web("#313A48")),
+                                                           new Stop(1, Color.web("#26262D"))
+        );
         tweakedChart.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
 
         // Tweak the chart plot background
@@ -256,10 +255,11 @@ public class Demo extends Application {
 
         // Tweak the grid lines
         tweakedChart.getHorizontalGridLines().setStroke(Color.TRANSPARENT);
-        LinearGradient verticalGridLineGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
-                                                                     new Stop(0, Color.TRANSPARENT),
-                                                                     new Stop(0.35, Color.TRANSPARENT),
-                                                                     new Stop(1, Color.web("#7A808D")));
+        final LinearGradient verticalGridLineGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+                                                                           new Stop(0, Color.TRANSPARENT),
+                                                                           new Stop(0.35, Color.TRANSPARENT),
+                                                                           new Stop(1, Color.web("#7A808D"))
+        );
 
         tweakedChart.getVerticalGridLines().setStroke(verticalGridLineGradient);
         tweakedChart.setHorizontalZeroLineVisible(false);
@@ -269,18 +269,24 @@ public class Demo extends Application {
         tweakedChart.setSeriesColor(tweakedSeries1, new LinearGradient(0, 0, 1, 0,
                                                                        true, CycleMethod.NO_CYCLE,
                                                                        new Stop(0, Color.web("#54D1FF")),
-                                                                       new Stop(1, Color.web("#016AED"))),
-                                    Color.TRANSPARENT);
+                                                                       new Stop(1, Color.web("#016AED"))
+                                    ),
+                                    Color.TRANSPARENT
+        );
         tweakedChart.setSeriesColor(tweakedSeries2, new LinearGradient(0, 0, 1, 0,
                                                                        true, CycleMethod.NO_CYCLE,
                                                                        new Stop(0, Color.web("#F9348A")),
-                                                                       new Stop(1, Color.web("#EB123A"))),
-                                    Color.TRANSPARENT);
+                                                                       new Stop(1, Color.web("#EB123A"))
+                                    ),
+                                    Color.TRANSPARENT
+        );
         tweakedChart.setSeriesColor(tweakedSeries3, new LinearGradient(0, 0, 1, 0,
                                                                        true, CycleMethod.NO_CYCLE,
                                                                        new Stop(0, Color.web("#7BFB00")),
-                                                                       new Stop(1, Color.web("#FCE207"))),
-                                    Color.TRANSPARENT);
+                                                                       new Stop(1, Color.web("#FCE207"))
+                                    ),
+                                    Color.TRANSPARENT
+        );
 //
 //        // Tweak series strokes
 //        Path tweakedSeries1Path = tweakedChart.getStrokePath(tweakedSeries1);
@@ -371,8 +377,9 @@ public class Demo extends Application {
 //        tweaked2Chart.setSymbolSize(tweaked2Series2, 10);
     }
 
-    @Override public void start(Stage stage) {
-        GridPane pane = new GridPane();
+    @Override
+    public void start(final Stage stage) {
+        final GridPane pane = new GridPane();
         pane.setBackground(new Background(new BackgroundFill(Color.DARKGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
         pane.setPadding(new Insets(10));
         pane.setHgap(10);
@@ -384,19 +391,15 @@ public class Demo extends Application {
         pane.add(tweakedChart, 0, 2);
 //        pane.add(tweaked2Chart, 1, 2);
 
-
-        Scene scene = new Scene(pane);
+        final Scene scene = new Scene(pane);
 
         stage.setTitle("Smooth Charts");
         stage.setScene(scene);
         stage.show();
     }
 
-    @Override public void stop() {
+    @Override
+    public void stop() {
         System.exit(0);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

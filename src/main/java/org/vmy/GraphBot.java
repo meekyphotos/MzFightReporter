@@ -1,6 +1,18 @@
 package org.vmy;
 
 import eu.hansolo.fx.smoothcharts.SmoothedChart;
+
+import org.vmy.util.FightReport;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -12,36 +24,32 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.RadialGradient;
+import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
-import org.vmy.util.FightReport;
-
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 
 import static eu.hansolo.fx.smoothcharts.SmoothedChart.TRANSPARENT_BACKGROUND;
 
 public class GraphBot extends Application {
 
-    public GraphBot() {}
-
     private static FightReport report;
 
-    public static void main(String[] args) throws Exception {
-        String homeDir = args[1];
+    public GraphBot() {
+    }
+
+    public static void main(final String[] args) throws Exception {
+        final String homeDir = args[1];
         org.vmy.Parameters.getInstance().homeDir = homeDir;
 
         report = FightReport.readReportFile();
-        launch(new String[]{});
+        launch();
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(final Stage stage) throws Exception {
 
         try {
             stage.setTitle("Line Chart Sample");
@@ -53,7 +61,7 @@ public class GraphBot extends Application {
             yAxis.setLabel("Damage");
 
             //creating the chart
-            SmoothedChart<Number, Number>lineChart = new SmoothedChart<Number, Number>(xAxis, yAxis);
+            final SmoothedChart<Number, Number> lineChart = new SmoothedChart<Number, Number>(xAxis, yAxis);
             //LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
             lineChart.setTitle("Squad Damage Output");
             lineChart.setCreateSymbols(false);
@@ -64,13 +72,13 @@ public class GraphBot extends Application {
 
             //lineChart.setStyle("-fx-text-fill: WHITE;")
 
-            Comparator sortingByName = new Comparator() {
+            final Comparator sortingByName = new Comparator() {
                 @Override
-                public int compare(Object o1, Object o2) {
-                    Map.Entry<String,List<Integer>> p1 = (Map.Entry<String,List<Integer>>)o1;
-                    Map.Entry<String,List<Integer>> p2 = (Map.Entry<String,List<Integer>>)o2;
-                    Integer p1Last = p1.getValue().get(p1.getValue().size()-1);
-                    Integer p2Last = p2.getValue().get(p2.getValue().size()-1);
+                public int compare(final Object o1, final Object o2) {
+                    final Map.Entry<String, List<Integer>> p1 = (Map.Entry<String, List<Integer>>) o1;
+                    final Map.Entry<String, List<Integer>> p2 = (Map.Entry<String, List<Integer>>) o2;
+                    final Integer p1Last = p1.getValue().get(p1.getValue().size() - 1);
+                    final Integer p2Last = p2.getValue().get(p2.getValue().size() - 1);
                     return -p1Last.compareTo(p2Last);
                 }
             };
@@ -82,19 +90,19 @@ public class GraphBot extends Application {
             //populating the series with data
             //Object[] names = report.getDmgMap().keySet().toArray();
             for (int i = 0; i < objects.length; i++) {
-                XYChart.Series<Number, Number> series = new XYChart.Series<>();
-                Map.Entry<String,List<Integer>> m = (Map.Entry<String,List<Integer>>) objects[i];
-                String name = (String) m.getKey();
-                series.setName((String) m.getKey());
-                Object[] ao = report.getDmgMap().get(name).toArray();
+                final XYChart.Series<Number, Number> series = new XYChart.Series<>();
+                final Map.Entry<String, List<Integer>> m = (Map.Entry<String, List<Integer>>) objects[i];
+                final String name = m.getKey();
+                series.setName(m.getKey());
+                final Object[] ao = report.getDmgMap().get(name).toArray();
                 int lastValue = 0;
                 //int interval = (int)Math.round(ao.length * 0.025);
                 //interval = interval == 0 ? 1 : interval;
-                int interval = 1;
-                for (int j = 0; j < ao.length; j = j+interval) {
-                    int nextValue = (Integer) ao[j];
-                    int diff = nextValue - lastValue;
-                    double perInterval = diff / interval;
+                final int interval = 1;
+                for (int j = 0; j < ao.length; j = j + interval) {
+                    final int nextValue = (Integer) ao[j];
+                    final int diff = nextValue - lastValue;
+                    final double perInterval = diff / interval;
                     series.getData().add(new XYChart.Data(j, perInterval));
                     lastValue = nextValue;
                 }
@@ -105,9 +113,10 @@ public class GraphBot extends Application {
             lineChart.setChartType(SmoothedChart.ChartType.AREA);
 
             // Tweak the chart background
-            RadialGradient gradient = new RadialGradient(0, 0, 0.5, 0.25, 0.5, true, CycleMethod.NO_CYCLE,
-                    new Stop(0, Color.web("#313A48")),
-                    new Stop(1, Color.web("#26262D")));
+            final RadialGradient gradient = new RadialGradient(0, 0, 0.5, 0.25, 0.5, true, CycleMethod.NO_CYCLE,
+                                                               new Stop(0, Color.web("#313A48")),
+                                                               new Stop(1, Color.web("#26262D"))
+            );
             lineChart.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
 
             // Tweak the chart plot background
@@ -127,10 +136,11 @@ public class GraphBot extends Application {
 
             // Tweak the grid lines
             lineChart.getHorizontalGridLines().setStroke(Color.TRANSPARENT);
-            LinearGradient verticalGridLineGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
-                    new Stop(0, Color.TRANSPARENT),
-                    new Stop(0.35, Color.TRANSPARENT),
-                    new Stop(1, Color.web("#7A808D")));
+            final LinearGradient verticalGridLineGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+                                                                               new Stop(0, Color.TRANSPARENT),
+                                                                               new Stop(0.35, Color.TRANSPARENT),
+                                                                               new Stop(1, Color.web("#7A808D"))
+            );
 
             lineChart.getVerticalGridLines().setStroke(verticalGridLineGradient);
             lineChart.setHorizontalZeroLineVisible(false);
@@ -153,7 +163,7 @@ public class GraphBot extends Application {
 //                            new Stop(1, Color.web("#FCE207"))),
 //                    Color.TRANSPARENT);
 
-            Scene scene = new Scene(lineChart, 800, 600);
+            final Scene scene = new Scene(lineChart, 800, 600);
 
 //            try {
 //                File f = new File(org.vmy.Parameters.getInstance().homeDir + "dark-theme.css");
@@ -172,18 +182,18 @@ public class GraphBot extends Application {
             //terminate
             Platform.exit();
             System.exit(0);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
-    public void saveAsPng(Scene scene, String path) {
-        WritableImage image = scene.snapshot(null);
-        File file = new File(path);
+    public void saveAsPng(final Scene scene, final String path) {
+        final WritableImage image = scene.snapshot(null);
+        final File file = new File(path);
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
             System.exit(1);
         }

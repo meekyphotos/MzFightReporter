@@ -27,7 +27,8 @@ import javafx.event.EventType;
  * Time: 04:57
  */
 public class SmoothedChartEvent extends Event {
-    public static final EventType<SmoothedChartEvent> DATA_SELECTED  = new EventType<>(ANY, "DATA_SELECTED");
+
+    public static final EventType<SmoothedChartEvent> DATA_SELECTED = new EventType<>(ANY, "DATA_SELECTED");
     private final double yValue;
 
     // ******************** Constructors **************************************
@@ -35,6 +36,7 @@ public class SmoothedChartEvent extends Event {
         super(TYPE);
         yValue = Y_VALUE;
     }
+
     public SmoothedChartEvent(final Object SRC, final EventTarget TARGET, final EventType<SmoothedChartEvent> TYPE, final double Y_VALUE) {
         super(SRC, TARGET, TYPE);
         yValue = Y_VALUE;
@@ -42,5 +44,7 @@ public class SmoothedChartEvent extends Event {
 
 
     // ******************** Methods *******************************************
-    public double getyValue() { return yValue; }
+    public double getyValue() {
+        return yValue;
+    }
 }

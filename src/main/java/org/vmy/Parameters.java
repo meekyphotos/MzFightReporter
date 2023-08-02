@@ -6,13 +6,14 @@ import java.util.Properties;
 
 public class Parameters {
 
+    private static Parameters instance = null;
     public String repoUrl = "https://api.github.com/repos/Swedemon/MzFightReporter/releases/latest";
     public String homeDir = "";
     public String gw2EIExe_Old = "\\GW2EI-4-4-21\\GuildWars2EliteInsights.exe";
     public String gw2EIExe_New = "\\GW2EI-7-7-22\\GuildWars2EliteInsights.exe";
     public String gw2EISettings = "\\GW2EI-7-7-22\\Settings\\";
     public String defaultLogFolder =
-            System.getenv("USERPROFILE") + "\\Documents\\Guild Wars 2\\addons\\arcdps\\arcdps.cbtlogs\\";
+      System.getenv("USERPROFILE") + "\\Documents\\Guild Wars 2\\addons\\arcdps\\arcdps.cbtlogs\\";
     public String customLogFolder = "";
     public String discordThumbnail = "https://i.imgur.com/KKddNgl.png";
     public String discordWebhook = "";
@@ -30,37 +31,40 @@ public class Parameters {
     public boolean showCCs = true;
     public boolean showQuickReport = true;
     public boolean showHeals = true;
+    public String parseBotParameters = "-Xmx1024M";
 
-    private static Parameters instance = null;
-    public static Parameters getInstance() {
-        if (instance == null)
-            instance = new Parameters();
-        return instance;
-    }
     private Parameters() {
         loadResources();
+    }
+
+    public static Parameters getInstance() {
+        if (instance == null) {
+            instance = new Parameters();
+        }
+        return instance;
     }
 
     private void loadResources() {
         FileInputStream file = null;
         try {
-            String path = "config.properties";
-            Properties prop = new Properties();
+            final String path = "config.properties";
+            final Properties prop = new Properties();
             file = new FileInputStream(path);
             prop.load(file);
 
             //set properties
             gw2EIExe_New = homeDir + "\\GW2EI-7-7-22\\GuildWars2EliteInsights.exe";
             gw2EIExe_Old = homeDir + "\\GW2EI-4-4-21\\GuildWars2EliteInsights.exe";
-            String lg = prop.getProperty("customLogFolder");
+            final String lg = prop.getProperty("customLogFolder");
             customLogFolder = prop.getProperty("customLogFolder");
-            discordThumbnail = prop.getProperty("discordThumbnail",discordThumbnail);
-            discordWebhook = prop.getProperty("discordWebhook",discordWebhook);
-            twitchChannelName = prop.getProperty("twitchChannelName",twitchChannelName);
-            twitchBotToken = prop.getProperty("twitchBotToken",twitchBotToken);
-            jarName = prop.getProperty("jarName",jarName);
-            maxWvwUpload = Integer.parseInt(prop.getProperty("maxWvwUpload", maxWvwUpload+""));
-            graphPlayerLimit = Integer.parseInt(prop.getProperty("graphPlayerLimit", graphPlayerLimit+""));
+            discordThumbnail = prop.getProperty("discordThumbnail", discordThumbnail);
+            discordWebhook = prop.getProperty("discordWebhook", discordWebhook);
+            twitchChannelName = prop.getProperty("twitchChannelName", twitchChannelName);
+            twitchBotToken = prop.getProperty("twitchBotToken", twitchBotToken);
+            jarName = prop.getProperty("jarName", jarName);
+            parseBotParameters = prop.getProperty("parseBotParameters", "-Xmx1024M");
+            maxWvwUpload = Integer.parseInt(prop.getProperty("maxWvwUpload", String.valueOf(maxWvwUpload)));
+            graphPlayerLimit = Integer.parseInt(prop.getProperty("graphPlayerLimit", String.valueOf(graphPlayerLimit)));
             showDamageGraph = Boolean.valueOf(prop.getProperty("showDamageGraph", "true"));
             showDamage = Boolean.valueOf(prop.getProperty("showDamage", "true"));
             showCleanses = Boolean.valueOf(prop.getProperty("showCleanses", "true"));
@@ -70,8 +74,15 @@ public class Parameters {
             showCCs = Boolean.valueOf(prop.getProperty("showCCs", "true"));
             showQuickReport = Boolean.valueOf(prop.getProperty("showQuickReport", "true"));
             showHeals = Boolean.valueOf(prop.getProperty("showHeals", "true"));
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.out.println("Warning: Unable to read config.properties.  Using default values.");
-        } finally { if (file != null) { try { file.close(); } catch (IOException e) {}}}
+        } finally {
+            if (file != null) {
+                try {
+                    file.close();
+                } catch (final IOException e) {
+                }
+            }
+        }
     }
 }
