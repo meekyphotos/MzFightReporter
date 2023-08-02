@@ -2,132 +2,133 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.vmy</groupId>
-    <artifactId>MzApp</artifactId>
-    <version>Latest</version>
-    <packaging>jar</packaging>
+  <groupId>org.vmy</groupId>
+  <artifactId>MzApp</artifactId>
+  <version>Latest</version>
+  <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>20</maven.compiler.source>
-        <maven.compiler.target>20</maven.compiler.target>
-    </properties>
+  <properties>
+    <maven.compiler.source>20</maven.compiler.source>
+    <maven.compiler.target>20</maven.compiler.target>
+    <javafx.platform>win</javafx.platform>
+  </properties>
 
-    <dependencies>
-      <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-      <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-base</artifactId>
-        <version>20.0.2</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
-      <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-graphics</artifactId>
-        <version>20.0.2</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
-      <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>20.0.2</version>
-      </dependency>
-      <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
-      <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-swing</artifactId>
-        <version>20.0.2</version>
-      </dependency>
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-base</artifactId>
+      <version>20.0.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-graphics</artifactId>
+      <version>20.0.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>20.0.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-swing</artifactId>
+      <version>20.0.2</version>
+    </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20230618</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.13.0</version>
-        </dependency>
-        <!-- https://github.com/DV8FromTheWorld/JDA/releases -->
-        <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
-            <version>5.0.0-beta.12</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.14</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.5.14</version>
-        </dependency>
-        <!-- https://github.com/MinnDevelopment/discord-webhooks -->
-        <dependency>
-            <groupId>club.minnced</groupId>
-            <artifactId>discord-webhooks</artifactId>
-            <version>0.8.2</version>
-        </dependency>
-        <!-- https://twitch4j.github.io/docs/getting-started/installation/ -->
-        <dependency>
-            <groupId>com.github.twitch4j</groupId>
-            <artifactId>twitch4j</artifactId>
-            <version>1.16.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.8</version>
-        </dependency>
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20230618</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.13.0</version>
+    </dependency>
+    <!-- https://github.com/DV8FromTheWorld/JDA/releases -->
+    <dependency>
+      <groupId>net.dv8tion</groupId>
+      <artifactId>JDA</artifactId>
+      <version>5.0.0-beta.12</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.14</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpmime</artifactId>
+      <version>4.5.14</version>
+    </dependency>
+    <!-- https://github.com/MinnDevelopment/discord-webhooks -->
+    <dependency>
+      <groupId>club.minnced</groupId>
+      <artifactId>discord-webhooks</artifactId>
+      <version>0.8.2</version>
+    </dependency>
+    <!-- https://twitch4j.github.io/docs/getting-started/installation/ -->
+    <dependency>
+      <groupId>com.github.twitch4j</groupId>
+      <artifactId>twitch4j</artifactId>
+      <version>1.16.0</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.8</version>
+    </dependency>
 
-    </dependencies>
+  </dependencies>
 
-    <build>
+  <build>
     <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>3.2.4</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>shade</goal>
-                    </goals>
-                    <configuration>
-                        <transformers>
-                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <manifestEntries>
-                                    <Main-Class>org.vmy.MainCore</Main-Class>
-                                    <Build-Number>1</Build-Number>
-                                </manifestEntries>
-                            </transformer>
-                        </transformers>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Main-Class>org.vmy.MainCore</Main-Class>
+                    <Build-Number>1</Build-Number>
+                  </manifestEntries>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
-    </build>
+  </build>
 
-    <repositories>
-        <repository>
-            <id>dv8tion</id>
-            <name>m2-dv8tion</name>
-            <url>https://m2.dv8tion.net/releases</url>
-        </repository>
-        <repository>
-            <name>jcenter</name>
-            <id>bintray-jcenter</id>
-            <url>https://jcenter.bintray.com</url>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <id>dv8tion</id>
+      <name>m2-dv8tion</name>
+      <url>https://m2.dv8tion.net/releases</url>
+    </repository>
+    <repository>
+      <name>jcenter</name>
+      <id>bintray-jcenter</id>
+      <url>https://jcenter.bintray.com</url>
+    </repository>
+  </repositories>
 </project>
