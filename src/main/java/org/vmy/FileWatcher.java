@@ -114,28 +114,9 @@ public class FileWatcher {
                         System.out.println("Invoking GW2EI...");
                         final String confFolder = p.homeDir + p.gw2EISettings;
                         String parseConfig = confFolder + "wvwupload.conf";
-
-                        final boolean itIsBig = f.length() > (long) p.maxWvwUpload * 1024 * 1024;
-
-                        //if large file then directly upload to dps reports without wvw stats
-                        if (itIsBig) {
-                            final String uploadConfig = confFolder + "uploadwithoutwvw.conf";
-                            final ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "start", "/b", "/belownormal",
-                                                                         "/wait", "." + p.gw2EIExe_New, "-c", uploadConfig, fullFilePath
-                            );
-                            pb.directory(new File(p.homeDir));
-                            pb.inheritIO();
-                            final Process p0 = pb.start();
-                            p0.waitFor(120, TimeUnit.SECONDS);
-                            p0.destroy();
-                            p0.waitFor();
-                            System.out.println("GW2EI Upload Status (0=success): " + p0.exitValue());
-                            parseConfig = confFolder + "wvwnoupload.conf"; //skip upload in upcoming call
-                        }
-
                         //parse json
                         final ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "start", "/b", "/belownormal",
-                                                                     "/wait", "." + (itIsBig ? p.gw2EIExe_Old : p.gw2EIExe_New), "-c", parseConfig, fullFilePath
+                                                                     "/wait", "." + p.gw2EIExe_New, "-c", parseConfig, fullFilePath
                         );
                         pb.directory(new File(p.homeDir));
                         pb.inheritIO();
