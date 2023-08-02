@@ -21,24 +21,28 @@
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-base</artifactId>
       <version>20.0.2</version>
+      <classifier>win</classifier>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics</artifactId>
       <version>20.0.2</version>
+      <classifier>win</classifier>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>20.0.2</version>
+      <classifier>win</classifier>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-swing -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-swing</artifactId>
       <version>20.0.2</version>
+      <classifier>win</classifier>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.json/json -->
