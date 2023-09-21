@@ -71,6 +71,9 @@ public class DiscordBot {
         if (p.showDamage && report.getDamage() != null) {
             embedBuilder.addField(new WebhookEmbed.EmbedField(false, "Damage", "```" + report.getDamage() + "```"));
         }
+        if (p.showHeals && report.getHealers() != null) {
+            embedBuilder.addField(new WebhookEmbed.EmbedField(false, "Healing", "```" + report.getHealers() + "```"));
+        }
         if (p.showSpikeDmg && report.getSpikers() != null) {
             embedBuilder.addField(new WebhookEmbed.EmbedField(false, "Spike Damage", "```" + report.getSpikers() + "```"));
         }
@@ -82,9 +85,6 @@ public class DiscordBot {
         }
         if (p.showDefensiveBoons && report.getDbooners() != null) {
             embedBuilder.addField(new WebhookEmbed.EmbedField(false, "Defensive Boons", "```" + report.getDbooners() + "```"));
-        }
-        if (p.showHeals && report.getHealers() != null) {
-            embedBuilder.addField(new WebhookEmbed.EmbedField(false, "Healing", "```" + report.getHealers() + "```"));
         }
         if (p.showCCs && report.getCcs() != null) {
             embedBuilder.addField(new WebhookEmbed.EmbedField(false, "Outgoing CC's  (stuns immobs chills cripples)", "```" + report.getCcs() + "```"));
